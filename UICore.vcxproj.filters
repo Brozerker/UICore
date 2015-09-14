@@ -33,5 +33,11 @@
     <ClInclude Include="UIButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UISprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
