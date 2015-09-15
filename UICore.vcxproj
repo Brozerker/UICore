@@ -64,6 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="From Main\DirectInput.h" />
+    <ClInclude Include="From Main\Game.h" />
+    <ClInclude Include="From Main\GameState.h" />
+    <ClInclude Include="From Main\Logger.h" />
+    <ClInclude Include="From Main\Player.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="SpaceShip.h" />
@@ -72,6 +77,11 @@
     <ClInclude Include="UIObject.h" />
     <ClInclude Include="UISprite.h" />
     <ClInclude Include="UIText.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="From Main\DirectInput.cpp" />
+    <ClCompile Include="From Main\Game.cpp" />
+    <ClCompile Include="From Main\Logger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
