@@ -17,5 +17,4 @@ public:
 	void update();
 	void updateMenu();
 	void updateGame();
-	// void updateCredits(); Are the credits UI?
 };

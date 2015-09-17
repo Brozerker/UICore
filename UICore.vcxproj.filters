@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Sam Stuff">
+      <UniqueIdentifier>{10efc4da-0367-4e17-8d3e-ce32bb30cf0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Main Stuff">
+      <UniqueIdentifier>{e3dba288-68ee-4d68-b6a5-fd98cfbf11a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphic.h">
@@ -39,34 +45,64 @@
     <ClInclude Include="UIText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="From Main\DirectInput.h">
+    <ClInclude Include="UIMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="From Main\Game.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="From Sam\D3DCore.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\Camera.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\D3DUtils.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\DirectInput.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\GFX.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\Models.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\Shaders.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\Text.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Sam\Textures.h">
+      <Filter>Header Files\Sam Stuff</Filter>
     </ClInclude>
     <ClInclude Include="From Main\GameState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Main Stuff</Filter>
     </ClInclude>
-    <ClInclude Include="From Main\Logger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="From Main\DirectInput.h">
+      <Filter>Header Files\Main Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Main\Game.h">
+      <Filter>Header Files\Main Stuff</Filter>
     </ClInclude>
     <ClInclude Include="From Main\Player.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Main Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Main\Logger.h">
+      <Filter>Header Files\Main Stuff</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="From Main\DirectInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="From Main\Game.cpp">
+    <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="From Main\Logger.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Main Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="From Main\DirectInput.cpp">
+      <Filter>Header Files\Main Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="From Main\Game.cpp">
+      <Filter>Header Files\Main Stuff</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
