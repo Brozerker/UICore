@@ -90,6 +90,9 @@
     <ClInclude Include="From Main\Logger.h">
       <Filter>Header Files\Main Stuff</Filter>
     </ClInclude>
+    <ClInclude Include="From Sam\Sprites.h">
+      <Filter>Header Files\Sam Stuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sprite.cpp">
@@ -103,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="From Main\Game.cpp">
       <Filter>Header Files\Main Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="From Sam\Sprites.cpp">
+      <Filter>Header Files\Sam Stuff</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

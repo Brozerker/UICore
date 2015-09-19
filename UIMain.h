@@ -14,7 +14,7 @@ public:
 	void activateButton(UIButton button);
 	void setGameState(GAMESTATE newState);
 	GAMESTATE getGameState();
-	void update();
+	void update(const float dt, const GAMESTATE state, const bool paused);
 	void updateMenu();
 	void updateGame();
 };
