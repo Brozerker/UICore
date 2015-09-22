@@ -9,6 +9,11 @@
 
 #include "From Main\GameState.h"
 #include "From Sam\GFX.h"
+
+// Sprite order
+#define HELP 0
+
+
 class UIMain {
 	GAMESTATE currentState;
 	// Stores the position of sprites that LoadSprite loads into an array so that they can be accessed later

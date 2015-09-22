@@ -86,15 +86,11 @@
     <ClInclude Include="From Sam\Sprites.h" />
     <ClInclude Include="From Sam\Text.h" />
     <ClInclude Include="From Sam\Textures.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Graphic.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIMain.h" />
     <ClInclude Include="UIObject.h" />
-    <ClInclude Include="UISprite.h" />
-    <ClInclude Include="UIText.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="From Main\DirectInput.cpp" />
