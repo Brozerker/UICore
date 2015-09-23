@@ -85,7 +85,7 @@ namespace GFXCore
 		//			any objects to preset the size of the vectors used to store the data and init
 		//			individual modules. 
 		//************************************
-		void initModules(const int numStartTexs = 20, const int numStartModels = 10, const int numStartFonts = 5, const int numStartSprites = 15, const int numStartShaders = 4);
+		bool initModules(const int numStartTexs = 20, const int numStartModels = 10, const int numStartFonts = 5, const int numStartSprites = 15, const int numStartShaders = 4);
 
 		//************************************
 		// Method:    onLostDevice
@@ -106,6 +106,8 @@ namespace GFXCore
 		// Notes: Call this function to reset the device after it has been lost
 		//************************************
 		void onResetDevice();
+
+		bool isDeviceLost();
 
 		//************************************
 		// Method:    shutdown
@@ -249,6 +251,11 @@ namespace GFXCore
 		void beginScene(D3DCOLOR clearColor); 
 		// TODO: remove only for testing
 		void endScene(); 
+
+		void renderScene();
+
+		void addToModelRenderList(const GSP420::ABC* obj);
+		void addToSpriteRenderList(const int* idsToRender, const int count);
 		
 		//************************************
 		// Method:    renderSprites
@@ -319,22 +326,30 @@ namespace GFXCore
 		static inline Graphics* get();
 
 	protected:
-		D3DCore*		d3d;
+		D3DCore*	d3d;
 		Textures		textures;
 		Models		models;
 		Camera		camera;
 		Text			text;
 		Sprites		sprites;
-		Shaders	shaders;
+		Shaders		shaders;
 
 	private:
+		//std::vector<const GSP420::ABC*>		modelRenderList;
+		std::vector<int>								spriteRenderList;
+
 		static Graphics*	pInstance;
+
+		int		nSpriteListIndex;
+		int		nModelListIndex;
 
 		static inline void del();
 		void updateCamera(const float dt);
 		void cameraSetPos(const D3DXVECTOR3& pos);
+// 		void renderModels();
+// 		void renderSprites();
 
-		Graphics() { d3d = D3DCore::get(); }
+		Graphics();
 		Graphics(const Graphics&);
 		~Graphics() {}
 	};

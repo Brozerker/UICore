@@ -16,11 +16,26 @@
 
 class UIMain {
 	GAMESTATE currentState;
+	GFXCore::Graphics gfx;
 	// Stores the position of sprites that LoadSprite loads into an array so that they can be accessed later
 	int * spriteElementPositions; 
+	int currentScore;
+	int missileAmmo;
 public:
-	void init() {
 
+	//UIMain(): currentState(STATE_INIT), currentScore(0), missileAmmo(0) {}
+	//~UIMain();
+
+	void init() {
+		//spriteElementPositions[0] = gfx.loadSprite("background.png");
+		//spriteElementPositions[1] = gfx.loadSprite("title.png");
+		//spriteElementPositions[2] = gfx.loadSprite("play.png");
+		//spriteElementPositions[3] = gfx.loadSprite("credits.png");
+		//spriteElementPositions[4] = gfx.loadSprite("quit.png");
+		//spriteElementPositions[5] = gfx.loadSprite("missile.png");
+		//spriteElementPositions[6] = gfx.loadSprite("healthBackground.png");
+		//spriteElementPositions[7] = gfx.loadSprite("healthBar.png");
+		//spriteElementPositions[8] = gfx.loadSprite("back.png");
 	}
 
 	GAMESTATE checkStateChanges() {
