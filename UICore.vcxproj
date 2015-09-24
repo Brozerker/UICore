@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="defines.h" />
     <ClInclude Include="From Main\DirectInput.h" />
     <ClInclude Include="From Main\Game.h" />
     <ClInclude Include="From Main\GameState.h" />

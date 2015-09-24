@@ -81,6 +81,9 @@
     <ClInclude Include="From Sam\Sprites.h">
       <Filter>Header Files\Sam Stuff</Filter>
     </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sprite.cpp">
