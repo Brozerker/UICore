@@ -11,7 +11,10 @@
 #include "From Sam\GFX.h"
 #include "defines.h"
 #include <vector>
+#include "From Main\DirectInput.h"
+#include "From Sam\Sprites.h"
 using namespace std;
+using GFXCore::SpriteData;
 
 
 class UIMain {
@@ -22,6 +25,21 @@ class UIMain {
 	vector<int> currentSpritesToRender;
 	int currentScore;
 	int missileAmmo;
+	DirectInput input;
+
+private:
+	bool spriteClicked(DirectInput &suppliedInput, SpriteData &suppliedSprite)
+	{
+		if (suppliedInput.mouseDX() > suppliedSprite.position.x && suppliedInput.mouseDX() < suppliedSprite.position.x + suppliedSprite.width) 
+		{
+			if (suppliedInput.mouseDY() > suppliedSprite.position.y && suppliedInput.mouseDY() < suppliedSprite.position.y + suppliedSprite.height)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 public:
 
 	UIMain(): currentState(STATE_INIT), currentScore(0), missileAmmo(0) {}
@@ -37,6 +55,7 @@ public:
 		spriteElementPositions[6] = gfx.loadSprite((wchar_t*)"Sprites\healthBar.png");
 		spriteElementPositions[7] = gfx.loadSprite((wchar_t*)"Sprites\Paused.png", D3DXVECTOR3(300, 100, 0.0f));
 		spriteElementPositions[8] = gfx.loadSprite((wchar_t*)"Sprites\Back.png", D3DXVECTOR3(350, 400, 0.0f));
+		spriteElementPositions[9] = gfx.loadSprite((wchar_t*)"Sprites\Gameover.png", D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	}
 
 	GAMESTATE checkStateChanges() {
@@ -71,9 +90,19 @@ public:
 		currentSpritesToRender.push_back(CREDITS);
 		// tell Graphics which sprites to draw (0,1,2,3)
 		// check for mouse input
-		// for each button
-			// was mouse input within button?
-			// change currentState accordingly
+		int MOUSE_LEFT = 0;
+		if (input.mouseButtonDown(MOUSE_LEFT))
+		{
+			if (spriteClicked(input, playSprite))
+			{
+				currentState = STATE_PLAY;
+			}
+
+			if (spriteClicked(input, creditsSprite))
+			{
+				currentState = STATE_CREDIT;
+			}
+		}
 	}
 	void updateGame() {
 		currentSpritesToRender.clear();
@@ -87,16 +116,24 @@ public:
 		   They've also provided me with their code. I haven't uploaded it, but if you want to \
 		   see it, let me know.
 	}
-	void updatePause() {
+	void updatePause(const bool paused) {
 		currentSpritesToRender.push_back(PAUSED);
 		currentSpritesToRender.push_back(BACK);
 		// tell Graphics which sprites to draw (7,8)
-		// check for mouse input
-		// was button pressed?
-			// change currentState accordingly
+		if (paused)
+		{
+			currentSpritesToRender.push_back(PAUSED);
+
+			if (spriteClicked(input, unpauseSprite))
+			{
+				paused = false;
+			}
+		}
 	}
 	void updateExit() {
 		// tell Graphics which sprites to draw
 		// Display game over sprite or something
+		currentState = STATE_EXIT;
+		currentSpritesToRender(GAMEOVER);
 	}
 };

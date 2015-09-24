@@ -8,3 +8,4 @@
 #define HEALTH		 6
 #define PAUSED		 7
 #define BACK		 8
+#define GAMEOVER     9
