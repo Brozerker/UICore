@@ -101,5 +101,8 @@
     <ClCompile Include="From Sam\Sprites.cpp">
       <Filter>Header Files\Sam Stuff</Filter>
     </ClCompile>
+    <ClCompile Include="GFX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
