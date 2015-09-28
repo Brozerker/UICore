@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Main Stuff">
       <UniqueIdentifier>{e3dba288-68ee-4d68-b6a5-fd98cfbf11a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Bill Stuff">
+      <UniqueIdentifier>{a13b2f19-cfa9-4100-81c8-e50df15b8bbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -84,6 +87,12 @@
     <ClInclude Include="defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="From Bill\UISpriteAnimation.h">
+      <Filter>Header Files\Bill Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="From Bill\libraries.h">
+      <Filter>Header Files\Bill Stuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sprite.cpp">
@@ -100,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="From Sam\Sprites.cpp">
       <Filter>Header Files\Sam Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="From Bill\UISpriteAnimation.cpp">
+      <Filter>Header Files\Bill Stuff</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

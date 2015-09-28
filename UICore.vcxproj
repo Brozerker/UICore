@@ -72,6 +72,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="defines.h" />
+    <ClInclude Include="From Bill\libraries.h" />
+    <ClInclude Include="From Bill\UISpriteAnimation.h" />
     <ClInclude Include="From Main\DirectInput.h" />
     <ClInclude Include="From Main\Game.h" />
     <ClInclude Include="From Main\GameState.h" />
@@ -94,6 +96,7 @@
     <ClInclude Include="UIObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="From Bill\UISpriteAnimation.cpp" />
     <ClCompile Include="From Main\DirectInput.cpp" />
     <ClCompile Include="From Main\Game.cpp" />
     <ClCompile Include="From Main\Logger.cpp" />
