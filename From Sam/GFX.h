@@ -4,7 +4,7 @@
  * \author Sam Rivera
  * \date September 2015
  *
- * Last Revision: 9/18/15
+ * Last Revision: 9/23/15
  */
 #pragma once
 #include <list>
@@ -14,9 +14,9 @@
 #include "Camera.h"
 #include "Text.h"
 #include "Sprites.h"
-//#include "ABC.h"
+#include "ABC.h"
 #include "Shaders.h"
-//#include "Vertex.h"
+#include "Vertex.h"
 // TODO: remove later
 #include "DirectInput.h"
 // TODO: Change to proper directory once integration begins
@@ -107,6 +107,15 @@ namespace GFXCore
 		//************************************
 		void onResetDevice();
 
+		//************************************
+		// Method:    isDeviceLost
+		// FullName:  GFXCore::Graphics::isDeviceLost
+		// Access:    public 
+		// Returns:   bool
+		// Qualifier:
+		// Notes: Call at the beginning of each frame to determine if we still have access to the 
+		//			 graphics card
+		//************************************
 		bool isDeviceLost();
 
 		//************************************
@@ -132,6 +141,8 @@ namespace GFXCore
 		//				after loading
 		//************************************
 		int loadTexture(const wchar_t* fileName);
+		int getTextureWidth(const int id);	// TODO: might make private
+		int getTextureHeight(const int id); // TODO: might make private
 
 		//************************************
 		// Method:    loadModel
@@ -167,27 +178,16 @@ namespace GFXCore
 		int loadFont(const FontData& fontData);
 
 		//************************************
-		// Method:    loadSprite
-		// FullName:  GFXCore::Graphics::loadSprite
+		// Method:    setTextForFont
+		// FullName:  GFXCore::Graphics::setTextForFont
 		// Access:    public 
-		// Returns:   int -  capture this integer in order to reference the sprite after loading
+		// Returns:   void
 		// Qualifier:
-		// Parameter: const wchar_t * fileName - the filename of the sprite to load
-		// Parameter: const bool centerIsTopLeft - set to false if you want the center to 
-		//															be the center of the sprite instead of 
-		//															the top left corner
-		// Parameter: const D3DXVECTOR3 & initPos - the initial position of the sprite
-		// Parameter: D3DCOLOR initColor - the initial color of the sprite
-		// Parameter: RECT * clipRect - the clipping rectangle dimensions. Pass NULL if 
-		//											the entire sprite is to be drawn
-		// Notes: Use this function to load a sprite. Capture the returned int so that you can 
-		//				access the sprite after loading it.
+		// Parameter: const int fontId - the ID of the font to set the string/text to display
+		// Parameter: const wchar_t * newText - the string/text to display
+		// Notes: Call this function after loading a font to set that font's text to display
 		//************************************
-		int loadSprite(const wchar_t* fileName, 
-							const bool centerIsTopLeft = true,
-							const D3DXVECTOR3& initPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f), 
-							D3DCOLOR initColor = D3DCOLOR_RGBA(255, 255, 255, 255),
-							RECT* clipRect = NULL);
+		void setTextForFont(const int fontId, const wchar_t* newText);
 
 		//************************************
 		// Method:    loadShader
@@ -234,6 +234,31 @@ namespace GFXCore
 		void updateSprite(const int id, const D3DXVECTOR3& position);
 
 		//************************************
+		// Method:    loadSprite
+		// FullName:  GFXCore::Graphics::loadSprite
+		// Access:    public 
+		// Returns:   int -  capture this integer in order to reference the sprite after loading
+		// Qualifier:
+		// Parameter: const wchar_t * fileName - the filename of the sprite to load
+		// Parameter: const bool centerIsTopLeft - set to false if you want the center to 
+		//															be the center of the sprite instead of 
+		//															the top left corner
+		// Parameter: const D3DXVECTOR3 & initPos - the initial position of the sprite
+		// Parameter: D3DCOLOR initColor - the initial color of the sprite
+		// Parameter: RECT * clipRect - the clipping rectangle dimensions. Pass NULL if 
+		//											the entire sprite is to be drawn
+		// Notes: Use this function to load a sprite. Capture the returned int so that you can 
+		//				access the sprite after loading it.
+		//************************************
+		int loadSprite(const wchar_t* fileName,
+							const bool centerIsTopLeft = true,
+							const D3DXVECTOR3& initPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f),
+							D3DCOLOR initColor = D3DCOLOR_RGBA(255, 255, 255, 255),
+							RECT* clipRect = NULL);
+		int getSpriteWidth(const int id);
+		int getSpriteHeight(const int id);
+
+		//************************************
 		// Method:    cameraSetLens
 		// FullName:  GFXCore::Graphics::cameraSetLens
 		// Access:    public 
@@ -247,42 +272,53 @@ namespace GFXCore
 		//************************************
 		void cameraSetLens(const int width, const int height, const float nearZ, const float farZ);
 
-		// TODO: remove only for testing
-		void beginScene(D3DCOLOR clearColor); 
-		// TODO: remove only for testing
-		void endScene(); 
-
+		//************************************
+		// Method:    renderScene
+		// FullName:  GFXCore::Graphics::renderScene
+		// Access:    public 
+		// Returns:   void
+		// Qualifier:
+		// Notes: Call once per scene. Most populate each scene with calls to
+		//  		 addToModelRenderList(), addToSpriteRenderList(), addToTextRenderList(). 
+		//************************************
 		void renderScene();
 
+		//************************************
+		// Method:    addToModelRenderList
+		// FullName:  GFXCore::Graphics::addToModelRenderList
+		// Access:    public 
+		// Returns:   void
+		// Qualifier:
+		// Parameter: const GSP420::ABC * obj - the object to be rendered
+		// Notes: Call this function as you iterate through object lists to add them to the 
+		//			  render list before rendering
+		//************************************
 		void addToModelRenderList(const GSP420::ABC* obj);
+
+		//************************************
+		// Method:    addToSpriteRenderList
+		// FullName:  GFXCore::Graphics::addToSpriteRenderList
+		// Access:    public 
+		// Returns:   void
+		// Qualifier:
+		// Parameter: const int * idsToRender - an array holding the captured ID for the loaded sprites you wish to render 
+		// Parameter: const int count - the number of sprites to render
+		// Notes: Call this function to add the ID's of the sprites that have been loaded to be rendered
+		//************************************
 		void addToSpriteRenderList(const int* idsToRender, const int count);
+
+		//************************************
+		// Method:    addToTextRenderList
+		// FullName:  GFXCore::Graphics::addToTextRenderList
+		// Access:    public 
+		// Returns:   void
+		// Qualifier:
+		// Parameter: const int * idsToRender - the ID's of the fonts/string you wish to render
+		// Parameter: const int count - the number of fonts/strings to render
+		// Notes: Call this function to add the ID's of the fonts/sprites that have been loaded to be rendered
+		//************************************
+		void addToTextRenderList(const int* idsToRender, const int count);
 		
-		//************************************
-		// Method:    renderSprites
-		// FullName:  GFXCore::Graphics::renderSprites
-		// Access:    public 
-		// Returns:   void
-		// Qualifier:
-		// Notes: NONE
-		//************************************
-		// TODO: for testing, will make private once I make the function using the render list
-		void renderSprites();
-
-		//************************************
-		// Method:    renderText
-		// FullName:  GFXCore::Graphics::renderText
-		// Access:    public 
-		// Returns:   void
-		// Qualifier:
-		// Parameter: const int id - the captured ID of the font
-		// Parameter: const wchar_t * displayText - the text to display
-		// Notes: 
-		//************************************
-		// TODO: for testing, will make private once I make the function using the render list
-		void renderText(const int id, const wchar_t* displayText);
-		// TODO: for testing, will make private once I make the function using the render list
-		void renderModel(const int id);
-
 		//************************************
 		// Method:    windowWidth
 		// FullName:  GFXCore::Graphics::windowWidth
@@ -335,19 +371,18 @@ namespace GFXCore
 		Shaders		shaders;
 
 	private:
-		//std::vector<const GSP420::ABC*>		modelRenderList;
+		std::vector<const GSP420::ABC*>		modelRenderList;
 		std::vector<int>								spriteRenderList;
+		std::vector<int>								textRenderList;
 
 		static Graphics*	pInstance;
 
 		int		nSpriteListIndex;
 		int		nModelListIndex;
+		int		nTextListIndex;
 
 		static inline void del();
 		void updateCamera(const float dt);
-		void cameraSetPos(const D3DXVECTOR3& pos);
-// 		void renderModels();
-// 		void renderSprites();
 
 		Graphics();
 		Graphics(const Graphics&);
