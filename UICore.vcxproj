@@ -89,11 +89,8 @@
     <ClInclude Include="From Sam\Sprites.h" />
     <ClInclude Include="From Sam\Text.h" />
     <ClInclude Include="From Sam\Textures.h" />
-    <ClInclude Include="SpaceShip.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIMain.h" />
-    <ClInclude Include="UIObject.h" />
+    <ClInclude Include="UI_Interface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="From Bill\UISpriteAnimation.cpp" />
@@ -101,7 +98,6 @@
     <ClCompile Include="From Main\Game.cpp" />
     <ClCompile Include="From Main\Logger.cpp" />
     <ClCompile Include="From Sam\Sprites.cpp" />
-    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -24,18 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpaceShip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UIObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UIButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UIMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -93,11 +81,11 @@
     <ClInclude Include="From Bill\libraries.h">
       <Filter>Header Files\Bill Stuff</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="From Main\Logger.cpp">
       <Filter>Header Files\Main Stuff</Filter>
     </ClCompile>
