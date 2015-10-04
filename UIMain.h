@@ -15,13 +15,6 @@
 using namespace std;
 using GFXCore::SpriteData;
 
-static int		currHealth		= HEALTH;
-static int		currAmmo		= MISSILE;
-static int		currPoint		= 0;
-
-float g_posX;
-float g_posY;
-
 
 class UIMain {
 protected:
@@ -75,22 +68,9 @@ public:
 		}
 	}
 
-	void updateScore()
-	{
-	
-		wchar_t scoreTxt[256];
-		swprintf(scoreTxt, 256, L"Point(s): %i", currPoint);
-
-	}
-
 	void updateGame() {
-		float healthPosX = 300;
-		float healthPosY = 100;
-
-		float ammoPosX = 200;
-		float ammoPosY = 100;
-
-		
+		int healthSize = getMaxHealth();
+		int currAmmo = getMissileAmmo();
 
 		// tells graphics what to draw
 		GFX->addToSpriteRenderList((int*)gameSpriteIDs[0], gameSpriteIDs.size());
@@ -98,26 +78,20 @@ public:
 		// update health bar and number of missiles
 
 		//Health bar update
-		g_posX = healthPosX;
-			if(HEALTH > currHealth)
+		if(getMaxHealth() > getHealth()) // if current health is less than maximum health
+		{
+			for(healthSize; healthSize > getHealth(); --healthSize) //reduce the health bar size from the difference.
 			{
-				for(int i = 0; i < currHealth; ++i)
-				{
-					GFX->updateSprite((wchar_t)"hp", D3DXVECTOR3(g_posX, healthPosY, 0.0f)); //update the next health bar node position
-
-					//add printsprite() function to display the health
-					
-					g_posX + 10; // increase the distance from the previous health bar node to the next node.
-				}
-				g_posX = healthPosX; // reset x coord position
+				GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(350, 400, 0.0f)); // update the information
 			}
+		}
 		
 		//Missle Bar Update
-		GFX->updateSprite((wchar_t)"missles", D3DXVECTOR3( ammoPosX, ammoPosY, 0.0f ));
-
-		//add printsprite() function to display the current ammo
-
-
+		if(currAmmo < getMissileAmmo()) // if current ammo is less than its maximum supply
+		{
+			GFX->updateSprite(gameSpriteIDs.at(MISSILE), D3DXVECTOR3(310, 400, 0.0f)); //update the information
+		}
+		
 
 		// Main has getHealth(), getMaxHealth(), and getMissileAmmo() functions that we can use. \
 		   They've also provided me with their code. I haven't uploaded it, but if you want to \
