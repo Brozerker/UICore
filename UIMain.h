@@ -77,10 +77,8 @@ public:
 
 	void updateScore()
 	{
-	
 		wchar_t scoreTxt[256];
 		swprintf(scoreTxt, 256, L"Point(s): %i", currPoint);
-
 	}
 
 	void updateGame() {
@@ -125,9 +123,6 @@ public:
 		
 	}
 	void updatePause(const bool paused) {
-		// tells graphics what to draw
-		//currentSpritesToRender.push_back(PAUSED);
-		//currentSpritesToRender.push_back(BACK);
 		if (paused)
 		{
 			GFX->addToSpriteRenderList((int*)pauseSpriteIDs[0], pauseSpriteIDs.size());

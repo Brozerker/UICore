@@ -10,6 +10,7 @@ public:
 		gameSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\missile.png"));
 		gameSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\healthBackground.png"));
 		gameSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\healthBar.png"));
+		gameSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\score.png"));
 		pauseSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\Paused.png", D3DXVECTOR3(300, 100, 0.0f)));
 		pauseSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\Back.png", D3DXVECTOR3(350, 400, 0.0f)));
 		exitSpriteIDs.push_back(GFX->loadSprite((wchar_t*)"Sprites\Gameover.png", D3DXVECTOR3(0.0f, 0.0f, 0.0f)));
