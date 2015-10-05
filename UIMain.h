@@ -68,15 +68,6 @@ public:
 		}
 	}
 
-<<<<<<< HEAD
-	void updateScore()
-	{
-		wchar_t scoreTxt[256];
-		swprintf(scoreTxt, 256, L"Point(s): %i", currPoint);
-	}
-
-=======
->>>>>>> origin/master
 	void updateGame() {
 		int healthSize = getMaxHealth();
 		int currAmmo = getMissileAmmo();
@@ -94,19 +85,16 @@ public:
 				GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(350, 400, 0.0f)); // update the information
 			}
 		}
-		
 		//Missle Bar Update
 		if(currAmmo < getMissileAmmo()) // if current ammo is less than its maximum supply
 		{
 			GFX->updateSprite(gameSpriteIDs.at(MISSILE), D3DXVECTOR3(310, 400, 0.0f)); //update the information
 		}
-		
-
 		// Main has getHealth(), getMaxHealth(), and getMissileAmmo() functions that we can use. \
 		   They've also provided me with their code. I haven't uploaded it, but if you want to \
 		   see it, let me know.
-		
 	}
+
 	void updatePause(const bool paused) {
 		if (paused)
 		{
