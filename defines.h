@@ -1,0 +1,11 @@
+// Sprite order
+#define BACKGROUND	 0
+#define TITLE		 1
+#define START		 2
+#define CREDITS		 3
+#define MISSILE		 4
+#define HPBACKGROUND 5
+#define HEALTH		 6
+#define PAUSED		 7
+#define BACK		 8
+#define GAMEOVER     9
