@@ -2,6 +2,7 @@
 #include "ProjectileManager.h"
 
 #include "Game.h"
+#include "GFX.h"
 
 void ProjectileManager::update(const float dt)
 {
@@ -11,15 +12,24 @@ void ProjectileManager::update(const float dt)
 		if (!it1->isEnabled())
 			it1 = Bullets.erase(it1);
 		else
+		{	
+			it1->setPosition(it1->getPosition() + it1->getVelocity() * BULLET_SPEED * dt);
+			it1->init(nBulletModelId, nBulletTextureId);
+			GFX->addToModelRenderList(&(*it1));
 			++it1;
+		}
 	}
 	std::list<Missile>::iterator it2 = Missiles.begin();
 	while (it2 != Missiles.end())
 	{
 		if (!it2->isEnabled())
 			it2 = Missiles.erase(it2);
-		else
+		else {
+			it2->setPosition(it2->getPosition() + it2->getVelocity() * MISSILE_SPEED * dt);
+			it2->init(nMissileModelId, nMissileTextureId);
+			GFX->addToModelRenderList(&(*it2));
 			++it2;
+		}
 	}
 }
 
@@ -34,5 +44,17 @@ void ProjectileManager::removeTarget(Enemy* targ)
 			it->setEnemyTarget(NULL);
 		}
 	}
+}
+
+void ProjectileManager::initBulletProjectiles(const int modelId, const int textureId)
+{
+	nBulletModelId = modelId;
+	nBulletTextureId = textureId;
+}
+
+void ProjectileManager::initMissileProjectiles(const int modelId, const int textureId)
+{
+	nMissileModelId = modelId;
+	nMissileTextureId = textureId;
 }
 

@@ -52,12 +52,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\D3D9Graphics\;..\Main\;$(DXSDK_DIR)\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Physics\;..\D3D9Graphics\;..\Main\;$(DXSDK_DIR)\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\Debug\;$(DXSDK_DIR)\lib\x86;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Physics\Lib\Debug;..\Debug\;$(DXSDK_DIR)\lib\x86;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -11,6 +11,7 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, PSTR, int)
 {
+	Game::Instance();
 	srand((unsigned)time(NULL));
 	if (!GFX->initGFX(hInstance, L"Space Game"))
 		LOGGER->Write(L"WinMain: Could not initialized graphics core", true);
@@ -89,17 +90,30 @@ void Game::init()
 	//will always start with the Init and then Menu states
 	States[STATE_INIT]->init();
 	States[STATE_MENU]->init();
-	// change later to be STATE_MENU
+// 	States[STATE_CREDIT]->init();
+// 	States[STATE_PLAY]->init();
+// 	States[STATE_EXIT]->init();
+	// TODO: change later to be STATE_MENU
 	State = STATE_PLAY;
 	QuitNow = false;
 
 	GFX->initModules();
+
+	//gamePhysics = physics();
+
+	gamePhysics.GameObjectManager->addBoxDynamicRigidBody("player", 0, 0, 25, 25, true, &PLAYER.physObj);
+
+	gamePhysics.startWorld();
+	gamePhysics.updateWorld();
 
 	nPlayerModel = GFX->loadModel(L"Content\\Models\\PlayerSpaceshipV2.x");
 	player.init(nPlayerModel, -1);
 	player.setPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	player.setFixedRotation(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	//player.toggleEnabled();
+
+	PROJECTILES.initBulletProjectiles(GFX->createSphereMesh(5.0f, 25, 25), -1);
+	PROJECTILES.initMissileProjectiles(GFX->createCylinderMesh(5.0f, 15.0f, 5.0f, 25, 25), -1);
 
 	GFX->cameraSetLens(GFX->windowWidth(), GFX->windowHeight(), -1000.0f, 1000.0f);
 }
@@ -117,6 +131,7 @@ void Game::onResetDevice()
 void Game::update(const float dt)
 {
 	States[State]->update(dt);
+	gamePhysics.updateWorld();
 	GFX->addToModelRenderList(&player);
 	//GFX->updateModel(nPlayerModel, player.getPosition());
 }

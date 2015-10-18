@@ -34,12 +34,27 @@ namespace GFXCore
 	{
 	public:
 		bool init(const int startNumModels = 10);
+
 		int loadModel(IDirect3DDevice9* device, const wchar_t* fileName, 
 							Textures& textures,
 							const D3DXVECTOR3& initPos, 
 							const D3DXVECTOR3& initRot, 
 							const D3DXVECTOR3& initScale, 
 							DWORD options);
+
+		int createBoxMesh(IDirect3DDevice9* device, const float width, const float height, 
+									const float depth);
+		int createCylinderMesh(IDirect3DDevice9* device, const float radZNeg, 
+										const float radZPos, const float lenght, const unsigned int slices, 
+										const unsigned int stacks);
+		int createPolyMesh(IDirect3DDevice9* device, const float lenght, 
+									const unsigned int sides);
+		int createSphereMesh(IDirect3DDevice9* device, const float radius, 
+										const unsigned int slices, const unsigned int stacks);
+		int createTeapotMesh(IDirect3DDevice9* device);
+		int createTorusMesh(IDirect3DDevice9* device, const float innRadius, 
+									const float outRadius, const unsigned int sides, const unsigned int rings);
+
 		void update(const int id, const D3DXVECTOR3& position, 
 						  const bool rotChange, const bool scaleChange,
 						  const D3DXVECTOR3& rotation, 

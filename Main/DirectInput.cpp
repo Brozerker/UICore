@@ -22,41 +22,41 @@ void DirectInput::init(DWORD keyboardCoopFlags, DWORD  mouseCoopFlags)
 	if (FAILED(DirectInput8Create(GFX->getAppInstance(), DIRECTINPUT_VERSION,
 		IID_IDirectInput8, (void**)&DInput, 0)))
 	{
-		LOGGER->Write(L"Input:Input: Could not create Direct Input 8 Device", true);
+		LOGGER->Write(L"Input:Input: Could not create Direct Input 8 Device");
 	}
 	//create keyboard device
 	if (FAILED(DInput->CreateDevice(GUID_SysKeyboard, &Keyboard, 0)))
 	{
-		LOGGER->Write(L"Input: Input: Could not create Keyboard Device", true);
+		LOGGER->Write(L"Input: Input: Could not create Keyboard Device");
 	}
 	if (FAILED(Keyboard->SetDataFormat(&c_dfDIKeyboard)))
 	{
-		LOGGER->Write(L"Input: Input: Could not set Keyboard Data Format", true);
+		LOGGER->Write(L"Input: Input: Could not set Keyboard Data Format");
 	}
 	if (FAILED(Keyboard->SetCooperativeLevel(GFX->getHWND(), keyboardCoopFlags)))
 	{
-		LOGGER->Write(L"Input: Input: Could not set Keyboard Cooperative Level", true);
+		LOGGER->Write(L"Input: Input: Could not set Keyboard Cooperative Level");
 	}
 	if (FAILED(Keyboard->Acquire()))
 	{
-		LOGGER->Write(L"Input: Input: Could not acquire Keyboard", true);
+		LOGGER->Write(L"Input: Input: Could not acquire Keyboard");
 	}
 	//create mouse device
 	if (FAILED(DInput->CreateDevice(GUID_SysMouse, &Mouse, 0)))
 	{
-		LOGGER->Write(L"Input: Input: Could not Create Mouse Device", true);
+		LOGGER->Write(L"Input: Input: Could not Create Mouse Device");
 	}
 	if (FAILED(Mouse->SetDataFormat(&c_dfDIMouse2)))
 	{
-		LOGGER->Write(L"Input: Input: Could not Set Mouse Date Format", true);
+		LOGGER->Write(L"Input: Input: Could not Set Mouse Date Format");
 	}
 	if (FAILED(Mouse->SetCooperativeLevel(GFX->getHWND(), mouseCoopFlags)))
 	{
-		LOGGER->Write(L"Input: Input: Could not Set Mouse Cooperative Level", true);
+		LOGGER->Write(L"Input: Input: Could not Set Mouse Cooperative Level");
 	}
 	if (FAILED(Mouse->Acquire()))
 	{
-		LOGGER->Write(L"Input: Input: Could not Acquire Mouse", true);
+		LOGGER->Write(L"Input: Input: Could not Acquire Mouse");
 	}
 	//ShowCursor(false);//hide default cursor in window
 }
@@ -82,7 +82,7 @@ void DirectInput::Poll()
 		// Try to acquire for next time we poll.
 		if (FAILED(Keyboard->Acquire()))
 		{
-			LOGGER->Write(L"Input : Poll: Could not Reaquire Keyboard", true);
+			LOGGER->Write(L"Input : Poll: Could not Reaquire Keyboard");
 		}
 	}
 	// Poll mouse.
@@ -94,7 +94,7 @@ void DirectInput::Poll()
 		// Try to acquire for next time we poll.
 		if (FAILED(Mouse->Acquire()))
 		{
-			LOGGER->Write(L"Input: Poll: Could not Reaquire Mouse", true);
+			LOGGER->Write(L"Input: Poll: Could not Reaquire Mouse");
 		}
 	}
 }

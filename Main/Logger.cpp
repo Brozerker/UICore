@@ -19,9 +19,9 @@ void Logger::Write(LPCWSTR line, bool bFatal)
 {
 	//start each line with system date/time
 	time_t currentTime = time(0);
-	char* buffer = "";
-	strftime(buffer, 25, "%Y-%m-%d %H:%M:%S ", localtime(&currentTime));
-	LogStream << buffer << line << std::endl;
+	//char* buffer = "";
+	//strftime(buffer, 25, "%Y-%m-%d %H:%M:%S ", localtime(&currentTime));
+	LogStream << /* buffer <<*/ line << std::endl;
 	//write it to error window too, making it highly visible so it's easy to see against
 	//all the other spam in that window
 	OutputDebugString(L"*********************************************************");

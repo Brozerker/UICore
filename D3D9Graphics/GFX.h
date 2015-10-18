@@ -4,7 +4,7 @@
  * \author Sam Rivera
  * \date September 2015
  *
- * Last Revision: 9/23/15
+ * Last Revision: 10/14/15
  */
 #pragma once
 #include <list>
@@ -17,8 +17,6 @@
 #include "ABC.h"
 #include "Shaders.h"
 #include "Vertex.h"
-// TODO: remove later
-// #include "DirectInput.h"
 
 #pragma comment (lib, "D3D9GraphicsD.lib")
 
@@ -39,7 +37,7 @@
  *
  * \author Sam Rivera
  *
- * \version 1.0
+ * \version 1.5
  *
  * \date September 2015
  *
@@ -51,12 +49,15 @@ namespace GFXCore
 	class Graphics
 	{
 	public:
+//----------------------------------------------------------------------
+// Base Functionality
+//----------------------------------------------------------------------
+
 		//************************************
 		// Method:    initGFX
 		// FullName:  GFXCore::Graphics::initGFX
 		// Access:    public 
 		// Returns:   bool
-		// Qualifier:
 		// Parameter: const HINSTANCE hInst - the instance of the application
 		// Parameter: const wchar_t * wndCaption - the window's caption
 		// Parameter: const int width - the width of the window
@@ -75,7 +76,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::initComponents
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const int numStartTexs - preset the number of nodes for textures
 		// Parameter: const int numStartModels - preset the number of nodes for models
 		// Parameter: const int numStartFonts - preset the number of nodes for fonts
@@ -92,7 +92,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::onLostDevice
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Notes: Call this function after the system lost access to the device
 		//************************************
 		void onLostDevice();
@@ -102,7 +101,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::onResetDevice
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Notes: Call this function to reset the device after it has been lost
 		//************************************
 		void onResetDevice();
@@ -112,7 +110,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::isDeviceLost
 		// Access:    public 
 		// Returns:   bool
-		// Qualifier:
 		// Notes: Call at the beginning of each frame to determine if we still have access to the 
 		//			 graphics card
 		//************************************
@@ -123,31 +120,122 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::shutdown
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Notes: Call this function before the application ends
 		//			Calls Release on all COM objects
 		//************************************
 		void shutdown();
 
+//----------------------------------------------------------------------
+// DirectX Stock Objects & X Models
+//----------------------------------------------------------------------
+
 		//************************************
-		// Method:    loadTexture
-		// FullName:  GFXCore::Graphics::loadTexture
+		// Method:    createBoxMesh
+		// FullName:  GFXCore::Graphics::createBoxMesh
 		// Access:    public 
-		// Returns:   int - capture this integer in order to access the texture later on
-		// Qualifier:
-		// Parameter: const wchar_t * fileName - the texture's file name
-		// Notes: Use this function to load a texture
-		//				Capture the returned int so that you can access the texture 
-		//				after loading
+		// Returns:   int - capture this integer in order to access the model later on
+		// Parameter: const float width - the width of the box
+		// Parameter: const float height - the height of the box
+		// Parameter: const float depth - the depth of the box
+		// Notes: Call updateModel() in order to populate the position of the mesh and 
+		//			other properties of the mesh. Should only create only one mesh, 
+		//			especially if the dimensions are the same for the object the mesh
+		//			represents.
+		//			Capture the returned int so that you can access the model after loading
 		//************************************
-		int loadTexture(const wchar_t* fileName);
+		int createBoxMesh(const float width, const float height,
+								   const float depth);
+
+		//************************************
+		// Method:    createCylinderMesh
+		// FullName:  GFXCore::Graphics::createCylinderMesh
+		// Access:    public 
+		// Returns:   int - capture this integer in order to access the model later on
+		// Parameter: const float radZNeg - how deep the radius of the cylinder will be
+		// Parameter: const float radZPos - how tall the radius of the cylinder will be
+		// Parameter: const float lenght - the length of the cylinder
+		// Parameter: const float slices - determines the horizontal quality, the higher the more polygons created
+		// Parameter: const float stacks - determines the vertical quality, the higher the more polygons created
+		// Notes: Call updateModel() in order to populate the position of the mesh and 
+		//			other properties of the mesh. Should only create only one mesh, 
+		//			especially if the dimensions are the same for the object the mesh
+		//			represents.
+		//			Capture the returned int so that you can access the model after loading
+		//************************************
+		int createCylinderMesh(const float radZNeg,
+									 	 const float radZPos, const float lenght, const unsigned int slices,
+										 const unsigned int stacks);
+		
+		//************************************
+		// Method:    createPolyMesh
+		// FullName:  GFXCore::Graphics::createPolyMesh
+		// Access:    public 
+		// Returns:   int - capture this integer in order to access the model later on
+		// Parameter: const float lenght - the lenght of each side of the polygons
+		// Parameter: const unsigned int sides - the number of sides the polygon has
+		// Notes: Call updateModel() in order to populate the position of the mesh and 
+		//			other properties of the mesh. Should only create only one mesh, 
+		//			especially if the dimensions are the same for the object the mesh
+		//			represents.
+		//			Capture the returned int so that you can access the model after loading
+		//************************************
+		int createPolyMesh(const float lenght,
+								   const unsigned int sides);
+
+		//************************************
+		// Method:    createSphereMesh
+		// FullName:  GFXCore::Graphics::createSphereMesh
+		// Access:    public 
+		// Returns:   int - capture this integer in order to access the model later on
+		// Parameter: const float radius - the radius of the sphere
+		// Parameter: const float slices - determines the horizontal quality, the higher the more polygons created
+		// Parameter: const float stacks - determines the vertical quality, the higher the more polygons created
+		// Notes: Call updateModel() in order to populate the position of the mesh and 
+		//			other properties of the mesh. Should only create only one mesh, 
+		//			especially if the dimensions are the same for the object the mesh
+		//			represents.
+		//			Capture the returned int so that you can access the model after loading
+		//************************************
+		int createSphereMesh(const float radius,
+								       const unsigned int slices, const unsigned int stacks);
+
+		//************************************
+		// Method:    createTeapotMesh
+		// FullName:  GFXCore::Graphics::createTeapotMesh
+		// Access:    public 
+		// Returns:   int - capture this integer in order to access the model later on
+		// Notes: Call updateModel() in order to populate the position of the mesh and 
+		//			other properties of the mesh. Should only create only one mesh, 
+		//			especially if the dimensions are the same for the object the mesh
+		//			represents.
+		//			Capture the returned int so that you can access the model after loading
+		//************************************
+		int createTeapotMesh();
+
+		//************************************
+		// Method:    createTorusMesh
+		// FullName:  GFXCore::Graphics::createTorusMesh
+		// Access:    public 
+		// Returns:   int - capture this integer in order to access the model later on
+		// Parameter: const float innRadius - the inner radius of the torus
+		// Parameter: const float outRadius - the outer radius of the torus
+		// Parameter: const unsigned int sides - determines the horizontal quality, the higher the more polygons created 
+		// Parameter: const unsigned int rings - determines the vertical quality, the higher the more polygons created
+		// Notes: Call updateModel() in order to populate the position of the mesh and 
+		//			other properties of the mesh. Should only create only one mesh, 
+		//			especially if the dimensions are the same for the object the mesh
+		//			represents.
+		//			Capture the returned int so that you can access the model after loading
+		//************************************
+		int createTorusMesh(const float innRadius,
+									 const float outRadius, const unsigned int sides, 
+									 const unsigned int rings);
 
 		//************************************
 		// Method:    loadModel
 		// FullName:  GFXCore::Graphics::loadModel
 		// Access:    public 
 		// Returns:   int - capture this integer in order to access the model later on
-		// Qualifier:
 		// Parameter: const wchar_t * fileName - the filename of the X model 
 		// Parameter: const D3DXVECTOR3 & initPos - the initial position of the model
 		// Parameter: const D3DXVECTOR3 & initRot - the initial rotation of the model
@@ -156,18 +244,39 @@ namespace GFXCore
 		// Notes: Use this function to load an X model
 		//				Capture the returned int so that you can access the model after loading
 		//************************************
-		int loadModel(const wchar_t* fileName, 
+		int loadModel(const wchar_t* fileName,
 							const D3DXVECTOR3& initPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f),
 							const D3DXVECTOR3& initRot = D3DXVECTOR3(0.0f, 0.0f, 0.0f),
 							const D3DXVECTOR3& initScale = D3DXVECTOR3(1.0f, 1.0f, 1.0f),
 							DWORD options = D3DXMESH_MANAGED);
 
 		//************************************
+		// Method:    updateModel
+		// FullName:  GFXCore::Graphics::updateModel
+		// Access:    public 
+		// Returns:   void
+		// Parameter: const int id
+		// Parameter: const D3DXVECTOR3 & position
+		// Parameter: const bool rotChange
+		// Parameter: const bool scaleChange
+		// Parameter: const D3DXVECTOR3 & rotation
+		// Parameter: const D3DXVECTOR3 & scaling
+		// Notes: Call this function in order to update the model data each frame
+		//************************************
+		void updateModel(const int id, const D3DXVECTOR3& position,
+								 const bool rotChange = false, const bool scaleChange = false,
+								 const D3DXVECTOR3& rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f),
+								 const D3DXVECTOR3& scaling = D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+
+//----------------------------------------------------------------------
+// Font and Text
+//----------------------------------------------------------------------
+
+		//************************************
 		// Method:    loadFont
 		// FullName:  GFXCore::Graphics::loadFont
 		// Access:    public 
 		// Returns:   int - capture this integer so you can access the font later on
-		// Qualifier:
 		// Parameter: const FontData & fontData - data structure used to hold the data 
 		//															required to create a Font
 		// Notes: Use this function to create a Font to be used later on for rendering text
@@ -180,19 +289,21 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::setTextForFont
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const int fontId - the ID of the font to set the string/text to display
 		// Parameter: const wchar_t * newText - the string/text to display
 		// Notes: Call this function after loading a font to set that font's text to display
 		//************************************
 		void setTextForFont(const int fontId, const wchar_t* newText);
 
+//----------------------------------------------------------------------
+// Shaders
+//----------------------------------------------------------------------
+
 		//************************************
 		// Method:    loadShader
 		// FullName:  GFXCore::Graphics::loadShader
 		// Access:    public 
 		// Returns:   int
-		// Qualifier:
 		// Parameter: const wchar_t * fileName
 		// Parameter: const char * techName
 		// Parameter: const char * worldMatName
@@ -200,43 +311,39 @@ namespace GFXCore
 		//************************************
 		int loadShader(const wchar_t* fileName, const char* techName, const char* worldMatName);
 
-		//************************************
-		// Method:    updateModel
-		// FullName:  GFXCore::Graphics::updateModel
-		// Access:    public 
-		// Returns:   void
-		// Qualifier:
-		// Parameter: const int id
-		// Parameter: const D3DXVECTOR3 & position
-		// Parameter: const bool rotChange
-		// Parameter: const bool scaleChange
-		// Parameter: const D3DXVECTOR3 & rotation
-		// Parameter: const D3DXVECTOR3 & scaling
-		// Notes: NONE
-		//************************************
-		void updateModel(const int id, const D3DXVECTOR3& position,
-								  const bool rotChange = false, const bool scaleChange = false,
-								  const D3DXVECTOR3& rotation = D3DXVECTOR3(0.0f, 0.0f, 0.0f),
-								  const D3DXVECTOR3& scaling = D3DXVECTOR3(1.0f, 1.0f, 1.0f));
+//----------------------------------------------------------------------
+// Textures and Sprites
+//----------------------------------------------------------------------
 
 		//************************************
 		// Method:    updateSprite
 		// FullName:  GFXCore::Graphics::updateSprite
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const int id
 		// Parameter: const D3DXVECTOR3 & position
-		// Notes: NONE
+		// Notes: Call this function to update a sprite each sprite
 		//************************************
 		void updateSprite(const int id, const D3DXVECTOR3& position); // TODO: Add clipRect update functionality
+
+
+		//************************************
+		// Method:    loadTexture
+		// FullName:  GFXCore::Graphics::loadTexture
+		// Access:    public 
+		// Returns:   int - capture this integer in order to access the texture later on
+		// Parameter: const wchar_t * fileName - the texture's file name
+		// Notes: Use this function to load a texture
+		//				Capture the returned int so that you can access the texture 
+		//				after loading
+		//************************************
+		int loadTexture(const wchar_t* fileName);
 
 		//************************************
 		// Method:    loadSprite
 		// FullName:  GFXCore::Graphics::loadSprite
 		// Access:    public 
 		// Returns:   int -  capture this integer in order to reference the sprite after loading
-		// Qualifier:
 		// Parameter: const wchar_t * fileName - the filename of the sprite to load
 		// Parameter: const bool centerIsTopLeft - set to false if you want the center to 
 		//															be the center of the sprite instead of 
@@ -258,7 +365,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::getSpriteWidth
 		// Access:    public 
 		// Returns:   int - the width of the sprite
-		// Qualifier:
 		// Parameter: const int id - the id of the sprite you want the width for
 		// Notes: returns the width of the sprite referenced by the id
 		//************************************
@@ -269,21 +375,40 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::getSpriteHeight
 		// Access:    public 
 		// Returns:   int - the height of the sprite
-		// Qualifier:
 		// Parameter: const int id - the id of the sprite you want the height of
 		// Notes: access to the height of the sprite referenced by the id
 		//************************************
 		int getSpriteHeight(const int id);
 
+		//************************************
+		// Method:    getSpritePosX
+		// FullName:  GFXCore::Graphics::getSpritePosX
+		// Access:    public 
+		// Returns:   float - the X position of the sprite on screen
+		// Parameter: const int id - the ID of the sprite you want the X position
+		// Notes: access to the X position on screen for the sprite referenced by the id
+		//************************************
 		float getSpritePosX(const int id);
+
+		//************************************
+		// Method:    getSpritePosY
+		// FullName:  GFXCore::Graphics::getSpritePosY
+		// Access:    public 
+		// Returns:   float - the Y position of the sprite on screen
+		// Parameter: const int id - the ID of the sprite you want the X position
+		// Notes: access to the Y position on screen for the sprite referenced by the id
+		//************************************
 		float getSpritePosY(const int id);
+
+//----------------------------------------------------------------------
+// Rendering and Camera
+//----------------------------------------------------------------------
 
 		//************************************
 		// Method:    cameraSetLens
 		// FullName:  GFXCore::Graphics::cameraSetLens
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const int width
 		// Parameter: const int height
 		// Parameter: const float nearZ
@@ -297,7 +422,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::renderScene
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Notes: Call once per scene. Most populate each scene with calls to
 		//  		 addToModelRenderList(), addToSpriteRenderList(), addToTextRenderList(). 
 		//************************************
@@ -308,7 +432,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::addToModelRenderList
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const GSP420::ABC * obj - the object to be rendered
 		// Notes: Call this function as you iterate through object lists to add them to the 
 		//			  render list before rendering
@@ -320,7 +443,6 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::addToSpriteRenderList
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const int * idsToRender - an array holding the captured ID for the loaded sprites you wish to render 
 		// Parameter: const int count - the number of sprites to render
 		// Notes: Call this function to add the ID's of the sprites that have been loaded to be rendered
@@ -332,13 +454,16 @@ namespace GFXCore
 		// FullName:  GFXCore::Graphics::addToTextRenderList
 		// Access:    public 
 		// Returns:   void
-		// Qualifier:
 		// Parameter: const int * idsToRender - the ID's of the fonts/string you wish to render
 		// Parameter: const int count - the number of fonts/strings to render
 		// Notes: Call this function to add the ID's of the fonts/sprites that have been loaded to be rendered
 		//************************************
 		void addToTextRenderList(const int* idsToRender, const int count);
 		
+//----------------------------------------------------------------------
+// Window Info
+//----------------------------------------------------------------------
+
 		//************************************
 		// Method:    windowWidth
 		// FullName:  GFXCore::Graphics::windowWidth

@@ -1,5 +1,0 @@
-#pragma once
-
-
-enum GAMESTATE { STATE_INIT, STATE_MENU, STATE_CREDIT, STATE_PLAY, STATE_EXIT };
-const static int NUM_STATES = 5;

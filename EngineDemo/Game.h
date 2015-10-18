@@ -27,7 +27,7 @@
 
 #pragma comment(lib, "Main.lib")
 #pragma comment(lib, "AI.lib")
-#pragma comment(lib, "D3D9GraphicsD.lib")
+//#pragma comment(lib, "D3D9GraphicsD.lib")
 #pragma comment(lib, "Physics.lib")
 #pragma comment(lib, "Audio.lib")
 
@@ -76,13 +76,13 @@ private:
 	void render();//render all the visual elements of the game
 	void shutdown();//used upon game exit
 
+	physics gamePhysics;
 	//the present state of the game
 	GameState* States[NUM_STATES];
 	//GameState States[NUM_STATES];
 	GAMESTATE State;
 	/*****
 	AI gameAI;
-	Physics gamePhysics;
 	UI gameUI;
 	Audio gameAudio;
 	*****/

@@ -19,7 +19,7 @@ class Bullet : public GSP420::ABC
 public:
 	Bullet(const D3DXVECTOR3 pos, const D3DXVECTOR3 vel, const ObjType t) : ABC(pos, vel, t) {}
 	void update(const float) {}
-	//bool init(const int modelId, const int textureId) { return true; }
+	bool init(const int modelId, const int textureId) { this->nModelId = modelId; this->nTextureId = textureId; return true; }
 	void shutdown() {}
 	inline bool isPlayers() { return eType == OT_PLAYER_BULLET; }
 protected:
@@ -48,14 +48,29 @@ class ProjectileManager
 	friend class D3DCore;
 	friend class Physics;
 public:
+	void initBulletProjectiles(const int modelId, const int textureId);
+	void initMissileProjectiles(const int modelId, const int textureId);
 	inline void addBullet(Bullet b) { Bullets.push_front(b); }
 	inline void addMissile(Missile m) { Missiles.push_front(m); }
 	void update(const float);
 	inline void clear() { Bullets.clear(); Missiles.clear(); }
 	void removeTarget(Enemy*);//if any missiles are targeting that enemy, set their targets to NULL instead
+	const std::list<Bullet>& getBullets() const { return Bullets; }
+
+	ProjectileManager() :
+		nMissileModelId(-1),
+		nBulletTextureId(-1),
+		nBulletModelId(-1),
+		nMissileTextureId(-1)
+	{}
 private:
 	inline std::list<Bullet>& getBullets() { return Bullets; }
 	std::list<Bullet> Bullets;
 	inline std::list<Missile>& getMissiles() { return Missiles; }
 	std::list<Missile> Missiles;
+
+	int nBulletModelId;
+	int nBulletTextureId;
+	int nMissileModelId;
+	int nMissileTextureId;
 };

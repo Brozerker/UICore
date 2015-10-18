@@ -8,6 +8,8 @@
 */
 #pragma once
 #include "ABC.h"
+//#pragma comment(lib, "Main.lib")
+#pragma comment(lib, "Physics.lib")
 
 namespace GFXCore
 {
