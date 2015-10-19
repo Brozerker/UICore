@@ -70,7 +70,6 @@ public:
 
 	void updateGame() {
 		int healthSize = getMaxHealth();
-		int currAmmo = getMissileAmmo();
 
 		// tells graphics what to draw
 		GFX->addToSpriteRenderList((int*)gameSpriteIDs[0], gameSpriteIDs.size());
@@ -85,10 +84,12 @@ public:
 				GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(350, 400, 0.0f)); // update the information
 			}
 		}
+
 		//Missle Bar Update
-		if(currAmmo < getMissileAmmo()) // if current ammo is less than its maximum supply
+		GFX->updateSprite(gameSpriteIDs.at(MISSILE), D3DXVECTOR3(310, 350, 0.0f)); //load in missile sprite
+		if(getMissileAmmo() != missileAmmo()) // if current ammo is less than its maximum supply
 		{
-			GFX->updateSprite(gameSpriteIDs.at(MISSILE), D3DXVECTOR3(310, 400, 0.0f)); //update the information
+			GFX->updateSprite(getMissileAmmo(), D3DXVECTOR3(310, 400, 0.0f)); //update the ammo count
 		}
 		// Main has getHealth(), getMaxHealth(), and getMissileAmmo() functions that we can use. \
 		   They've also provided me with their code. I haven't uploaded it, but if you want to \
