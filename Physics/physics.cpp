@@ -17,7 +17,7 @@ physics::physics(float32 gravityX, float32 gravityY)
 physics::physics()
 {
 	
-    gravity = b2Vec2(0.0f, 9.8f); // need to expose gravtiy in constuctor.
+    gravity = b2Vec2(0.0f, -0.0f); // need to expose gravtiy in constuctor.
 	world = new b2World(gravity);
 	GameObjectManager = new gameObjectManager();
 	

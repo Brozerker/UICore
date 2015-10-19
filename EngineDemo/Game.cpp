@@ -100,11 +100,10 @@ void Game::init()
 	GFX->initModules();
 
 	//gamePhysics = physics();
+	
 
-	gamePhysics.GameObjectManager->addBoxDynamicRigidBody("player", 0, 0, 25, 25, true, &PLAYER.physObj);
-
-	gamePhysics.startWorld();
-	gamePhysics.updateWorld();
+	
+	
 
 	nPlayerModel = GFX->loadModel(L"Content\\Models\\PlayerSpaceshipV2.x");
 	player.init(nPlayerModel, -1);
@@ -116,6 +115,11 @@ void Game::init()
 	PROJECTILES.initMissileProjectiles(GFX->createCylinderMesh(5.0f, 15.0f, 5.0f, 25, 25), -1);
 
 	GFX->cameraSetLens(GFX->windowWidth(), GFX->windowHeight(), -1000.0f, 1000.0f);
+
+	gamePhysics.GameObjectManager->addBoxDynamicRigidBody("player", 0, 0, 25, 25, true, &PLAYER.physObj);
+
+	gamePhysics.startWorld();
+
 }
 
 void Game::onLostDevice()
