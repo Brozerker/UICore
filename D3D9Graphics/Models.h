@@ -17,11 +17,11 @@ namespace GFXCore
 	struct XModelData {
 		vector<D3DMATERIAL9>	materialList;
 		vector<int>		textureList;
+		wchar_t				strFileName[MAX_FILE_NAME];
 		D3DXMATRIX		translationMat;
 		D3DXMATRIX		rotationMat;
 		D3DXMATRIX		scalingMat;
 		D3DXMATRIX		worldTranformMat;
-		wchar_t				strFileName[MAX_FILE_NAME];
 		ID3DXMesh*		pMesh;
 		ID3DXBuffer*		pAdjacency;
 		ID3DXBuffer*		pMaterials;

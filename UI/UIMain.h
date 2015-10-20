@@ -13,6 +13,7 @@
 #include <vector>
 #include "..\Main\DirectInput.h"
 #include "..\Main\Player.h"
+#include "..\EngineDemo\Game.h"
 using namespace std;
 using GFXCore::SpriteData;
 
@@ -29,6 +30,7 @@ protected:
 	vector<int> exitSpriteIDs;
 	int currentScore;
 	int missileAmmo;
+	RECT hpBarSize;
 
 private:
 	bool spriteClicked(DirectInput &suppliedInput, int spriteID)
@@ -45,13 +47,19 @@ private:
 	
 public:
 
-	UIMain(): currentState(STATE_INIT), currentScore(0), missileAmmo(0) {}
-	~UIMain();
+	UIMain(): currentState(STATE_INIT), currentScore(0), missileAmmo(0) {
+//		player = &(PLAYER);//Instance()->player);
+		hpBarSize.top = 350;
+		hpBarSize.bottom = 400;
+		hpBarSize.left = 100;
+		hpBarSize.right = 500;
+	}
+	~UIMain() {}
 
 	
 	void updateMenu() {
 		// tells graphics what to draw
-		GFX->addToSpriteRenderList((int*)menuSpriteIDs[0], menuSpriteIDs.size());
+		GFX->addToSpriteRenderList(&menuSpriteIDs[0], menuSpriteIDs.size());
 
 		// check for mouse input
 		int MOUSE_LEFT = 0;
@@ -70,27 +78,24 @@ public:
 	}
 
 	void updateGame() {
-		int healthSize = player->getMaxHealth();
-		int currAmmo = player->getMissileAmmo();
-
+//		int healthSize = PLAYER.getMaxHealth();
+//		int currAmmo = PLAYER.getMissileAmmo();
 		// tells graphics what to draw
-		GFX->addToSpriteRenderList((int*)gameSpriteIDs[0], gameSpriteIDs.size());
+		GFX->addToSpriteRenderList(&gameSpriteIDs[0], gameSpriteIDs.size());
 
 		// update health bar and number of missiles
 
 		//Health bar update
-		if(healthSize > player->getHealth()) // if current health is less than maximum health
+//		for(healthSize; healthSize > PLAYER.getHealth(); --healthSize) //reduce the health bar size from the difference.
 		{
-			for(healthSize; healthSize > player->getHealth(); --healthSize) //reduce the health bar size from the difference.
-			{
-				GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(350, 400, 0.0f)); // update the information
-			}
+//			hpBarSize.right = 500 * (healthSize / 100);
+			GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(350, 400, 0.0f), hpBarSize); // update the information
 		}
+
 		//Missle Bar Update
-		if(currAmmo < player->getMissileAmmo()) // if current ammo is less than its maximum supply
-		{
-			GFX->updateSprite(gameSpriteIDs.at(MISSILE), D3DXVECTOR3(310, 400, 0.0f)); //update the information
-		}
+		//for (int i = 0; i < )
+		//GFX->text->updateText(currAmmogetMissile//update the information
+		
 		// Main has getHealth(), getMaxHealth(), and getMissileAmmo() functions that we can use. 
 		//  They've also provided me with their code. I haven't uploaded it, but if you want to 
 		//  see it, let me know.
@@ -99,7 +104,7 @@ public:
 	void updatePause(const bool paused) {
 		if (paused)
 		{
-			GFX->addToSpriteRenderList((int*)pauseSpriteIDs[0], pauseSpriteIDs.size());
+			GFX->addToSpriteRenderList(&pauseSpriteIDs[0], pauseSpriteIDs.size());
 			if (spriteClicked(*INPUT, pauseSpriteIDs[BACK]))
 			{
 				//paused = false;
@@ -108,7 +113,7 @@ public:
 	}
 	void updateExit() {
 		// tell Graphics which sprites to draw
-		GFX->addToSpriteRenderList((int*)exitSpriteIDs[0], exitSpriteIDs.size());
+		GFX->addToSpriteRenderList(&exitSpriteIDs[0], exitSpriteIDs.size());
 		currentState = STATE_EXIT;
 	}
 };

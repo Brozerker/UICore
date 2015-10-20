@@ -6,6 +6,8 @@ physicsObject::physicsObject()
  
 	body      = NULL; 
     userData  = NULL; 
+	collissionCategory = 0; //Im a thing
+	collissionMask = 0;     // I collide with everything.
 }
 
 
@@ -51,10 +53,10 @@ int physicsObject::applyImpulseFromCenter(float32 x, float32 y)
 }
 
 //applies force from the center of an object
-int physicsObject::applyTorqueFromCenter(float32 x, float32 y)
+int physicsObject::applyTorqueFromCenter(float32 rotation)
 {
-	b2Vec2 theforce(x, y);
-	body->ApplyForce(theforce, body->GetWorldCenter(), true);
+	b2Vec2 theforce(rotation, y);
+	body->ApplyTorque(rotation, true);
 	return 0;
 }
 
@@ -73,5 +75,20 @@ int physicsObject::setBounceAmount(float32 ba)
 	bounceAmount = ba; // track locally for convenience.
 	body->GetFixtureList()->SetDensity(ba);
 	body->ResetMassData();
+	return 0;
+}
+
+int physicsObject::setCollissionMask(uint16 cm)
+{
+	collissionMask = cm; // track locally for convenience.
+	//Can only be used when the object is created for the first time. 
+	return 0;
+}
+
+int physicsObject::setCollissionCategory(uint16 cc)
+{
+	collissionCategory = cc; // track locally for convenience.
+
+	//Can only be used when the object is created for the first time. 
 	return 0;
 }

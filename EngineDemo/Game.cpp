@@ -96,15 +96,10 @@ void Game::init()
 	// TODO: change later to be STATE_MENU
 	State = STATE_PLAY;
 	QuitNow = false;
-
 	GFX->initModules();
 
-	//gamePhysics = physics();
+//	gamePhysics = physics();
 	
-
-	
-	
-
 	nPlayerModel = GFX->loadModel(L"Content\\Models\\PlayerSpaceshipV2.x");
 	player.init(nPlayerModel, -1);
 	player.setPosition(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
@@ -117,9 +112,11 @@ void Game::init()
 	GFX->cameraSetLens(GFX->windowWidth(), GFX->windowHeight(), -1000.0f, 1000.0f);
 
 	gamePhysics.GameObjectManager->addBoxDynamicRigidBody("player", 0, 0, 25, 25, true, &PLAYER.physObj);
-
+	PLAYER.physObj.setCollissionCategory((uint16) gameObjectCollissionCategory::gocPLAYER); // I am a player
+	PLAYER.physObj.setCollissionMask((uint16) gocPLAYER || gocMISSLE || gocPICKUP ||gocBOUNDARY || gocENEMY); // i can collide with 
 	gamePhysics.startWorld();
-
+	
+	gameUI.init();
 }
 
 void Game::onLostDevice()
@@ -134,10 +131,18 @@ void Game::onResetDevice()
 
 void Game::update(const float dt)
 {
+	static float counter = 0.0f;
+	counter += dt;
+	if (counter >= 0.033333333334f)
+	{
+		gamePhysics.updateWorld(dt);
+		counter = 0.0f;
+	}
+	
 	States[State]->update(dt);
-	gamePhysics.updateWorld();
 	GFX->addToModelRenderList(&player);
 	//GFX->updateModel(nPlayerModel, player.getPosition());
+	gameUI.update(dt, State, paused);
 }
 
 void Game::render()

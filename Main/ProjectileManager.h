@@ -11,7 +11,7 @@ static const int MISSILE_DAMAGE = 2;
 static const int COLLISION_DAMAGE = 1;
 static const int MISSILE_RADIUS = 50;
 
-const static float BULLET_SPEED = 50.f;
+const static float BULLET_SPEED = 500.f;
 const static float MISSILE_SPEED = 40.f;
 
 class Bullet : public GSP420::ABC

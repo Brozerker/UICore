@@ -6,11 +6,16 @@
 
 void ProjectileManager::update(const float dt)
 {
+	int screenRadX = (GFX->windowWidth()) / 2 + 10;
+	int screenRadY = (GFX->windowHeight()) / 2 + 10;
+
 	std::list<Bullet>::iterator it1 = Bullets.begin();
 	while (it1 != Bullets.end())
 	{
-		if (!it1->isEnabled())
+		if (!it1->isEnabled() )
+		{
 			it1 = Bullets.erase(it1);
+		}
 		else
 		{	
 			it1->setPosition(it1->getPosition() + it1->getVelocity() * BULLET_SPEED * dt);

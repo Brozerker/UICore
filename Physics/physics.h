@@ -8,6 +8,14 @@
 const float M2P = 8.00;
 const float P2M = 1 / M2P;
 
+enum gameObjectCollissionCategory{
+	gocBOUNDARY      = 0x0001,
+	gocPLAYER        = 0x0002,
+	gocMISSLE        = 0x0004,
+	gocPICKUP        = 0x0008,
+	gocENEMY         = 0x0010
+};
+
 class CollissionCallBackListener : public b2ContactListener
 {
 
@@ -29,9 +37,9 @@ public:
 	b2PolygonShape groundBox;
 	
 	
-	float32 timeStep = 1.0f / 240.0f;
-	int32 velocityIterations = 10;
-	int32 positionIterations = 6;
+	float32 timeStep = 1.0f / 30.0f;
+	const int32 velocityIterations = 10;
+	const int32 positionIterations = 6;
 
 	physics();
 
@@ -50,7 +58,7 @@ public:
 	// create and Instance of the physics world 
 	int startWorld();
 	// update the simulation by calling this in the main loop.
-	int updateWorld();
+	int updateWorld(float dt);
 };
 
 

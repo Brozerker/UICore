@@ -1,10 +1,62 @@
-﻿Build started 10/18/2015 10:35:35 PM.
-     1>Project "C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\EngineDemo\EngineDemo.vcxproj" on node 2 (ClCompile target(s)).
+﻿Build started 10/20/2015 4:42:29 PM.
+     1>Project "C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\EngineDemo\EngineDemo.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\D3D9Graphics\ /I..\Main\ /I..\Physics\ /I..\AI\ /I..\Audio\ /I..\Audio\inc\ /I..\UI\ /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\D3D9Graphics\ /I..\Main\ /I..\Physics\ /I..\AI\ /I..\Audio\ /I..\Audio\inc\ /I..\UI\ /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp GameState.cpp
          Game.cpp
-     1>Done Building Project "C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\EngineDemo\EngineDemo.vcxproj" (ClCompile target(s)).
+         Generating Code...
+         Compiling...
+         GameState.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\EngineDemo.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Physics\Lib\Debug /LIBPATH:..\Audio\lib /LIBPATH:..\Debug\ /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\lib\x86" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\EngineDemo.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\EngineDemo.lib" /MACHINE:X86 Debug\Game.obj
+         Debug\GameState.obj
+     1>Physics.lib(b2WheelJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2WheelJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2WeldJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2WeldJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2RopeJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2RopeJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2RevoluteJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2RevoluteJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2PulleyJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2PulleyJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2PrismaticJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2PrismaticJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2MouseJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2MouseJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2MotorJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2MotorJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Joint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Joint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2GearJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2GearJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2FrictionJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2FrictionJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2DistanceJoint.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2DistanceJoint.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2PolygonContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2PolygonContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2PolygonAndCircleContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2PolygonAndCircleContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2EdgeAndPolygonContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2EdgeAndPolygonContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2EdgeAndCircleContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2EdgeAndCircleContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2ContactSolver.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2ContactSolver.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Contact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Contact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2CircleContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2CircleContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2ChainAndPolygonContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2ChainAndPolygonContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2ChainAndCircleContact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2ChainAndCircleContact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2WorldCallbacks.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2WorldCallbacks.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2World.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2World.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Island.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Island.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Fixture.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Fixture.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2ContactManager.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2ContactManager.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Body.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Body.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Timer.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Timer.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2StackAllocator.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2StackAllocator.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Settings.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Settings.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Math.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Math.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Draw.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Draw.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2BlockAllocator.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2BlockAllocator.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2PolygonShape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2PolygonShape.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2EdgeShape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2EdgeShape.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2ChainShape.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2ChainShape.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2TimeOfImpact.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2TimeOfImpact.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2DynamicTree.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2DynamicTree.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Distance.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Distance.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2Collision.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2Collision.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2CollidePolygon.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2CollidePolygon.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2CollideEdge.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2CollideEdge.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2CollideCircle.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2CollideCircle.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+     1>Physics.lib(b2BroadPhase.obj) : warning LNK4099: PDB 'box2d.pdb' was not found with 'Physics.lib(b2BroadPhase.obj)' or at 'C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\box2d.pdb'; linking object as if no debug info
+         EngineDemo.vcxproj -> C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\Debug\EngineDemo.exe
+     1>Done Building Project "C:\Users\Chris\Documents\GitHub\GSP420EngineDemo\EngineDemo\EngineDemo.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.37
+Time Elapsed 00:00:09.81

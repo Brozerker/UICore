@@ -29,7 +29,8 @@ public:
 	int    halfWidth; 
 	std::string shapeList; 
 	void* userData; 
-	
+	uint16 collissionMask; 
+	uint16 collissionCategory;
 	physicsObject();
 	~physicsObject();
 	// turn on the object to react in phyiscs world
@@ -40,9 +41,11 @@ public:
 	int remove();
 	int applyForceFromCenter(float32 x, float32 y);
 	int applyImpulseFromCenter(float32 x, float32 y);
-	int applyTorqueFromCenter(float32 x, float32 y);
+	int applyTorqueFromCenter(float32 rotation);
 	int setLinkedObject(void* linkedObject);
 	int setBounceAmount(float32 ba);
+	int setCollissionMask(uint16 cm);
+	int setCollissionCategory(uint16 cc);
 	
 };
 

@@ -48,9 +48,9 @@ int physics::startWorld()
 
 
 // update the simulation by calling this in the main loop.
-int physics::updateWorld()
+int physics::updateWorld(float dt)
 {
-
+//	timeStep = dt;
 	world->Step(timeStep, velocityIterations, positionIterations);
 
 	// Lets Loop through and create all our objects.
@@ -69,6 +69,8 @@ int physics::updateWorld()
 
 			b2BodyDef bodyDef;
 
+		
+
 			if (gameObject->second->isDynamic)  {
 				bodyDef.type = b2_dynamicBody;
 			}
@@ -86,7 +88,7 @@ int physics::updateWorld()
 			bodyDef.position.Set(P2M*gameObject->second->x, P2M*gameObject->second->y);
 
 
-
+			
 			b2Body* body = world->CreateBody(&bodyDef);
 			
 			body->SetUserData(gameObject->second);
@@ -138,7 +140,11 @@ int physics::updateWorld()
 
 			// Override the default friction.
 			fixtureDef.friction = 0.9800f;
-
+			 
+			if ((gameObject->second->collissionCategory != 0) && (gameObject->second->collissionMask != 0)) {
+				fixtureDef.filter.categoryBits = gameObject->second->collissionCategory;
+				fixtureDef.filter.maskBits = gameObject->second->collissionMask;
+			} 
 			// Add the shape to the body.
 			body->CreateFixture(&fixtureDef);
 

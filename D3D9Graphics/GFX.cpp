@@ -88,9 +88,9 @@ void GFXCore::Graphics::updateModel(const int id, const D3DXVECTOR3& position, c
 	models.update(id, position, rotChange, scaleChange, rotation, scaling);
 }
 
-void GFXCore::Graphics::updateSprite(const int id, const D3DXVECTOR3& position)
+void GFXCore::Graphics::updateSprite(const int id, const D3DXVECTOR3& position, const RECT& clipRect)
 {
-	sprites.update(id, position);
+	sprites.update(id, position, clipRect);
 }
 
 int GFXCore::Graphics::loadShader(const wchar_t* fileName, const char* techName, const char* worldMatName)

@@ -15,7 +15,7 @@ void InitState::init()
 	INPUT->init(DISCL_NONEXCLUSIVE | DISCL_FOREGROUND, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
 
 //	GAMECLASS->gameAudio.init();
-	GAMECLASS->gameUI.init();
+//	GAMECLASS->gameUI.init();
 }
 
 void InitState::shutdown()
@@ -33,7 +33,7 @@ void MenuState::update(const float dt)
 	//	GAMECLASS->gameAudio.update(dt);
 	INPUT->Poll();
 	// PHYSICS: add update
-	GAMECLASS->gameUI.update(dt, STATE_MENU, GAMECLASS->paused);
+//	GAMECLASS->gameUI.update(dt, STATE_MENU, GAMECLASS->paused);
 	//GAMECLASS->changeState(GAMECLASS->gameUI.checkStateChanges());
 }
 
@@ -109,68 +109,79 @@ void PlayState::init()
 
 void PlayState::update(const float dt)
 {
-	INPUT->Poll();
-	GAMECLASS->gamePhysics.updateWorld();
+	static float fixedtime = 0.0f;
+	fixedtime += dt;
 
-	static float pausecooldown = 0.f;
-	if(pausecooldown > 0.f)
-		pausecooldown -= dt;
-	//GAMECLASS->gameAudio.update(dt);
-	//listen for input
-	if (INPUT->KeyDown(DIK_ESCAPE) && pausecooldown <= 0.f)
+//	if (fixedtime >= 0.016666666667f)
 	{
-		GAMECLASS->togglePause();
-		pausecooldown = .5f;
-	}
-	if(GAMECLASS->paused)
-	{
-		//GAMECLASS->gameUI.update(dt, STATE_PLAY, true);
-	}
-	else
-	{
-		//only do any of this if the player is alive
-		if(PLAYER.isEnabled())
+		//fixedtime -= 0.016666666667f;
+		//fixedtime = 0.0f;
+		INPUT->Poll();
+		//	GAMECLASS->gamePhysics.updateWorld(dt);
+
+		static float pausecooldown = 0.f;
+		if (pausecooldown > 0.f)
+			pausecooldown -= dt;
+		//GAMECLASS->gameAudio.update(dt);
+		//listen for input
+		if (INPUT->KeyDown(DIK_ESCAPE) && pausecooldown <= 0.f)
 		{
-			//listen for player input
-			//the cool down for bullet and missile firing is built into the player class
-			if(INPUT->KeyDown(DIK_SPACE))
-				PLAYER.fireBullet();
-			if(INPUT->KeyDown(DIK_F))
-				PLAYER.fireMissile();
-			//player movement
-			float x, y;
-			if(INPUT->KeyDown(DIK_W))
-				y = 10.f;
-			else if(INPUT->KeyDown(DIK_S))
-				y = -10.f;
-			else
-				y = 0.f;
-			if(INPUT->KeyDown(DIK_A))
-				x = -10.f;
-			else if(INPUT->KeyDown(DIK_D))
-				x = 10.f;
-			else
-				x = 0.f;
-			PLAYER.getPhys().applyForceFromCenter(x, y);
-			D3DXVECTOR3 pos;
-			pos.x = PLAYER.getPhys().x;
-			pos.y = PLAYER.getPhys().y;
-			pos.z = 0.0f;
-			PLAYER.setPosition(pos/*PLAYER.getPosition() + PLAYER.getVelocity() * dt * 100*/);
-			//update AI/physics first so they can flag objects
-			//GAMECLASS->gameAI.update(dt);
-			//GAMECLASS->gamePhysics.update(dt);
-			//then we update the objects to see which are flagged
-			PLAYER.update(dt);
-			ASTEROIDS.update(dt);
-			ENEMIES.update(dt);
-			PICKUPS.update(dt);
-			PROJECTILES.update(dt);
-			GAMECLASS->gameUI.update(dt, STATE_PLAY, GAMECLASS->paused);
+			GAMECLASS->togglePause();
+			pausecooldown = .5f;
 		}
+		if (GAMECLASS->paused)
+		{
+			//GAMECLASS->gameUI.update(dt, STATE_PLAY, true);
+		}
+		else
+		{
+			//only do any of this if the player is alive
+			if (PLAYER.isEnabled())
+			{
+				//listen for player input
+				//the cool down for bullet and missile firing is built into the player class
+				if (INPUT->KeyDown(DIK_SPACE))
+					PLAYER.fireBullet();
+				else
+					PLAYER.resetBulletTime();
+				if (INPUT->KeyDown(DIK_F))
+					PLAYER.fireMissile();
+				//player movement
+				float x, y;
+				if (INPUT->KeyDown(DIK_W))
+					y = PLAYER_SPEED;
+				else if (INPUT->KeyDown(DIK_S))
+					y = -PLAYER_SPEED;
+				else
+					y = 0.f;
+				if (INPUT->KeyDown(DIK_A))
+					x = -PLAYER_SPEED;
+				else if (INPUT->KeyDown(DIK_D))
+					x = PLAYER_SPEED;
+				else
+					x = 0.f;
+
+				PLAYER.getPhys().applyForceFromCenter(x, y);
+				D3DXVECTOR3 pos;
+				pos.x = (float)PLAYER.getPhys().x;
+				pos.y = (float)PLAYER.getPhys().y;
+				pos.z = 0.0f;
+				PLAYER.setPosition(pos/*PLAYER.getPosition() + PLAYER.getVelocity() * dt * 100*/);
+				//update AI/physics first so they can flag objects
+				//GAMECLASS->gameAI.update(dt);
+				//GAMECLASS->gamePhysics.update(dt);
+				//then we update the objects to see which are flagged
+				PLAYER.update(dt);
+				ASTEROIDS.update(dt);
+				ENEMIES.update(dt);
+				PICKUPS.update(dt);
+				PROJECTILES.update(dt);
+				//			GAMECLASS->gameUI.update(dt, STATE_PLAY, GAMECLASS->paused);
+			}
+		}
+		//after updating, check for any state changes due to UI things
+		//GAMECLASS->changeState(GAMECLASS->gameUI.checkStateChanges());
 	}
-	//after updating, check for any state changes due to UI things
-	//GAMECLASS->changeState(GAMECLASS->gameUI.checkStateChanges());
 }
 
 void PlayState::render()
@@ -214,7 +225,7 @@ void ExitState::init()
 	//GAMECLASS->gameAudio.shutdown();
 	GFX->shutdown();
 	INPUT->shutdown(); 
-	GAMECLASS->gamePhysics.endWorld();
+//	GAMECLASS->gamePhysics.endWorld();
 }
 
 

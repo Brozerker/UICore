@@ -322,9 +322,10 @@ namespace GFXCore
 		// Returns:   void
 		// Parameter: const int id
 		// Parameter: const D3DXVECTOR3 & position
+		// Parameter: const RECT & clipRect
 		// Notes: Call this function to update a sprite each sprite
 		//************************************
-		void updateSprite(const int id, const D3DXVECTOR3& position); // TODO: Add clipRect update functionality
+		void updateSprite(const int id, const D3DXVECTOR3& position, const RECT& clipRect); 
 
 
 		//************************************

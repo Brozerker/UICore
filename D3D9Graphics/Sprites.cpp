@@ -92,13 +92,14 @@ void GFXCore::Sprites::render(const int id, Textures& textures)
 		ErrorMsg(L"Sprite Draw Failure!", L"Sprites::render()");
 }
 
-void GFXCore::Sprites::update(const int id, const D3DXVECTOR3& newPos)
+void GFXCore::Sprites::update(const int id, const D3DXVECTOR3& newPos, const RECT& clipRect)
 {
 #if defined (_DEBUG) | defined(DEBUG)
 	CHECK_OUT_OF_BOUNDS(id, (int)spriteList.size());
 #endif
 
 	spriteList[id].position = newPos;
+	spriteList[id].clipRect = clipRect;
 }
 
 
