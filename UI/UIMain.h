@@ -75,23 +75,30 @@ public:
 				currentState = STATE_CREDIT;
 			}
 		}
+		GFX->setTextForFont(GFX->loadFont((GFXCore::FontData&)"..\\EngineDemo\\Content\\Font\\Delicious-Roman.otf"), (wchar_t*)"hello");
 	}
 
+
+
 	void updateGame() {
+		//GFX->loadFont((GFXCore::FontData&)"..\\EngineDemo\\Content\\Font\\Delicious-Roman.otf");
 //		int healthSize = PLAYER.getMaxHealth();
 //		int currAmmo = PLAYER.getMissileAmmo();
 		// tells graphics what to draw
 		GFX->addToSpriteRenderList(&gameSpriteIDs[0], gameSpriteIDs.size());
-
 		// update health bar and number of missiles
-
+		
 		//Health bar update
 //		for(healthSize; healthSize > PLAYER.getHealth(); --healthSize) //reduce the health bar size from the difference.
 		{
 //			hpBarSize.right = 500 * (healthSize / 100);
-			GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(350, 400, 0.0f), hpBarSize); // update the information
+			GFX->updateSprite(gameSpriteIDs.at(HEALTH), D3DXVECTOR3(370, 710, 0.0f), hpBarSize); // update the information
+			
+			
 		}
-
+		
+		GFX->setTextForFont(GFX->loadFont((GFXCore::FontData&)"..\\EngineDemo\\Content\\Font\\Delicious-Roman.otf"), (wchar_t*)"Ammo : %i");
+		GFX->setTextForFont(GFX->loadFont((GFXCore::FontData&)"..\\EngineDemo\\Content\\Font\\Delicious-Roman.otf"), (wchar_t*)"Score : %i");
 		//Missle Bar Update
 		//for (int i = 0; i < )
 		//GFX->text->updateText(currAmmogetMissile//update the information
